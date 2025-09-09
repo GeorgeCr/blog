@@ -1,10 +1,49 @@
-<body>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/blog">Blog</a>
-  <h1>About Me</h1>
-  <h2>... and my journey in blogging</h2>
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
-  <p>I am working for a tutorial for now, let's see how it goes</p>
-  <p>Wish me luck</p>
-</body>
+const pageTitle = "About Me";
+const mySkills = ["Frontend", "Backend", "Too Lazy To Add More Now"];
+const inProgress = true;
+const skillColor = "red";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <h1>{pageTitle}</h1>
+    <h2>... and my journey in blogging</h2>
+    <p>What I know to do...</p>
+    <ul>
+      {mySkills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    <p>I am working for a tutorial for now, let's see how it goes</p>
+    <p>Wish me luck</p>
+    {inProgress && <p>I am yet to finish building this section about me</p>}
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
+</html>
