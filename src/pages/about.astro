@@ -1,49 +1,21 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
 
 const pageTitle = "About Me";
 const mySkills = ["Frontend", "Backend", "Too Lazy To Add More Now"];
 const inProgress = true;
-const skillColor = "red";
-const fontWeight = "bold";
-const textCase = "uppercase";
 ---
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
+<BaseLayout pageTitle={pageTitle}>
+  <h1>{pageTitle}</h1>
+  <h2>... and my journey in blogging</h2>
+  <p>What I know to do...</p>
+  <ul>
+    {mySkills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <h2>... and my journey in blogging</h2>
-    <p>What I know to do...</p>
-    <ul>
-      {mySkills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-
-    <p>I am working for a tutorial for now, let's see how it goes</p>
-    <p>Wish me luck</p>
-    {inProgress && <p>I am yet to finish building this section about me</p>}
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
-</html>
+  <p>I am working for a tutorial for now, let's see how it goes</p>
+  <p>Wish me luck</p>
+  {inProgress && <p>I am yet to finish building this section about me</p>}
+</BaseLayout>
